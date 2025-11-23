@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { FadeIn } from "@/components/FadeIn";
+import { StockTicker } from "@/components/StockTicker";
 
 export default function Home() {
   return (
@@ -10,6 +11,10 @@ export default function Home() {
         <div className="absolute top-0 left-1/4 w-96 h-96 bg-purple-300 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob"></div>
         <div className="absolute top-0 right-1/4 w-96 h-96 bg-yellow-300 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob animation-delay-2000"></div>
         <div className="absolute -bottom-32 left-1/3 w-96 h-96 bg-pink-300 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob animation-delay-4000"></div>
+
+        {/* Floating Elements */}
+        <div className="absolute top-1/3 left-10 w-16 h-16 border-4 border-black/5 rounded-full animate-bounce duration-[3000ms]"></div>
+        <div className="absolute bottom-1/4 right-10 w-24 h-24 border-4 border-black/5 rounded-lg rotate-12 animate-pulse duration-[4000ms]"></div>
       </div>
 
       {/* Navigation */}
@@ -23,20 +28,21 @@ export default function Home() {
           </div>
           <Link
             href="https://dclex-dex.netlify.app/"
-            className="px-4 py-2 bg-black text-white text-sm font-medium rounded-full hover:bg-gray-800 transition-all hover:scale-105 active:scale-95"
+            className="px-4 py-2 bg-black text-white text-sm font-medium rounded-full hover:bg-gray-800 transition-all hover:scale-105 active:scale-95 shadow-lg hover:shadow-xl"
           >
             Launch App
           </Link>
         </div>
+        <StockTicker />
       </nav>
 
       <main>
         {/* Hero Section */}
-        <section className="relative pt-32 pb-20 md:pt-48 md:pb-32 px-6 border-b border-black/5">
+        <section className="relative pt-40 pb-20 md:pt-56 md:pb-32 px-6 border-b border-black/5">
           <div className="max-w-7xl mx-auto">
             <FadeIn delay={0.2} direction="up">
               <h1 className="text-5xl md:text-8xl font-bold tracking-tighter mb-8 max-w-4xl">
-                Tokenized Stocks <br />
+                <span className="text-gradient">Tokenized Stocks</span> <br />
                 <span className="text-black/40">on Lisk.</span>
               </h1>
             </FadeIn>
@@ -49,13 +55,13 @@ export default function Home() {
               <div className="flex flex-col sm:flex-row gap-4">
                 <Link
                   href="https://dclex-dex.netlify.app/"
-                  className="px-8 py-4 bg-black text-white text-lg font-medium rounded-full hover:bg-gray-800 transition-all hover:scale-105 active:scale-95 inline-flex items-center justify-center shadow-lg hover:shadow-xl"
+                  className="px-8 py-4 bg-black text-white text-lg font-medium rounded-full hover:bg-gray-800 transition-all hover:scale-105 active:scale-95 inline-flex items-center justify-center shadow-lg hover:shadow-xl hover:shadow-black/20"
                 >
                   Start Trading
                 </Link>
                 <Link
                   href="#"
-                  className="px-8 py-4 border border-black/20 text-black text-lg font-medium rounded-full hover:bg-black/5 transition-all hover:scale-105 active:scale-95 inline-flex items-center justify-center"
+                  className="px-8 py-4 border border-black/20 text-black text-lg font-medium rounded-full hover:bg-black/5 transition-all hover:scale-105 active:scale-95 inline-flex items-center justify-center backdrop-blur-sm"
                 >
                   Learn More
                 </Link>
@@ -68,7 +74,7 @@ export default function Home() {
         <section className="py-24 px-6 border-b border-black/5">
           <div className="max-w-7xl mx-auto grid md:grid-cols-3 gap-12">
             <FadeIn delay={0.2} className="h-full">
-              <div className="group h-full p-8 rounded-3xl bg-white/50 border border-black/5 hover:border-black/20 hover:shadow-2xl hover:-translate-y-1 transition-all duration-300">
+              <div className="group h-full p-8 rounded-3xl glass-card hover:-translate-y-1 transition-all duration-300">
                 <h3 className="text-2xl font-semibold mb-4 group-hover:text-black/80 transition-colors">Buy with IDRX</h3>
                 <p className="text-black/50 mb-6 leading-relaxed">
                   Seamlessly swap between IDRX stablecoin and tokenized stocks. No traditional broker account needed.
@@ -79,7 +85,7 @@ export default function Home() {
               </div>
             </FadeIn>
             <FadeIn delay={0.4} className="h-full">
-              <div className="group h-full p-8 rounded-3xl bg-white/50 border border-black/5 hover:border-black/20 hover:shadow-2xl hover:-translate-y-1 transition-all duration-300">
+              <div className="group h-full p-8 rounded-3xl glass-card hover:-translate-y-1 transition-all duration-300">
                 <h3 className="text-2xl font-semibold mb-4 group-hover:text-black/80 transition-colors">Earn Yield on Stocks</h3>
                 <p className="text-black/50 mb-6 leading-relaxed">
                   Add your stocks to liquidity pools on Lisk and earn a share of fees on every swap.
@@ -90,7 +96,7 @@ export default function Home() {
               </div>
             </FadeIn>
             <FadeIn delay={0.6} className="h-full">
-              <div className="group h-full p-8 rounded-3xl bg-white/50 border border-black/5 hover:border-black/20 hover:shadow-2xl hover:-translate-y-1 transition-all duration-300">
+              <div className="group h-full p-8 rounded-3xl glass-card hover:-translate-y-1 transition-all duration-300">
                 <h3 className="text-2xl font-semibold mb-4 group-hover:text-black/80 transition-colors">Track on Lisk</h3>
                 <p className="text-black/50 mb-6 leading-relaxed">
                   Manage your stock portfolio on-chain with full self-custody. Verify every transaction on the Lisk explorer.
