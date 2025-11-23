@@ -1,15 +1,28 @@
 import Link from "next/link";
+import dynamic from "next/dynamic";
 import { FadeIn } from "@/components/FadeIn";
 import { StockTicker } from "@/components/StockTicker";
 import { Hero3D } from "@/components/Hero3D";
-import { AnimatedStats } from "@/components/AnimatedStats";
 import { PageLoader } from "@/components/PageLoader";
-import { ScrollStepper } from "@/components/ScrollStepper";
 import { SpotlightCard } from "@/components/SpotlightCard";
+import { CursorFollower } from "@/components/CursorFollower";
+import { ScrollProgress } from "@/components/ScrollProgress";
+
+const AnimatedStats = dynamic(() => import("@/components/AnimatedStats").then(mod => ({ default: mod.AnimatedStats })), {
+  loading: () => <div className="w-full h-32" />,
+  ssr: true
+});
+
+const ScrollStepper = dynamic(() => import("@/components/ScrollStepper").then(mod => ({ default: mod.ScrollStepper })), {
+  loading: () => <div className="w-full h-96" />,
+  ssr: true
+});
 
 export default function Home() {
   return (
     <>
+      <ScrollProgress />
+      <CursorFollower />
       <PageLoader />
       <div className="min-h-screen bg-white text-black selection:bg-black selection:text-white overflow-hidden relative bg-dot-grid">
         <div className="fixed inset-0 w-full h-full bg-noise z-0 pointer-events-none mix-blend-multiply opacity-50"></div>
@@ -33,7 +46,7 @@ export default function Home() {
             </div>
             <Link
               href="https://dclex-dex.netlify.app/"
-              className="px-4 py-2 bg-black text-white text-sm font-medium rounded-full hover:bg-gray-800 transition-all hover:scale-105 active:scale-95 shadow-lg hover:shadow-xl"
+              className="btn-glow px-4 py-2 bg-black text-white text-sm font-medium rounded-full hover:bg-gray-800 transition-all hover:scale-105 active:scale-95 shadow-lg hover:shadow-xl"
             >
               Launch App
             </Link>
@@ -73,7 +86,7 @@ export default function Home() {
                   <div className="flex flex-col sm:flex-row gap-4">
                     <Link
                       href="https://dclex-dex.netlify.app/"
-                      className="px-8 py-4 bg-black text-white text-lg font-medium rounded-full hover:bg-gray-800 transition-all hover:scale-105 active:scale-95 inline-flex items-center justify-center shadow-lg hover:shadow-xl hover:shadow-black/20 tracking-wide"
+                      className="btn-glow px-8 py-4 bg-black text-white text-lg font-medium rounded-full hover:bg-gray-800 transition-all hover:scale-105 active:scale-95 inline-flex items-center justify-center shadow-lg hover:shadow-2xl hover:shadow-black/30 tracking-wide"
                     >
                       Start Trading
                     </Link>
@@ -88,7 +101,9 @@ export default function Home() {
               </div>
 
               <FadeIn delay={0.8} direction="up" scale={0.85}>
-                <Hero3D />
+                <div className="parallax-globe">
+                  <Hero3D />
+                </div>
               </FadeIn>
             </div>
           </section>
@@ -97,7 +112,7 @@ export default function Home() {
 
           <section className="py-24 px-6 border-b border-black/5 relative">
             <div className="max-w-7xl mx-auto grid md:grid-cols-3 gap-12 relative z-10">
-              <FadeIn delay={0.2} className="h-full">
+              <FadeIn delay={0.1} className="h-full">
                 <SpotlightCard className="h-full p-8 group">
                   <h3 className="text-2xl font-semibold mb-4 group-hover:text-black/80 transition-colors">Buy with IDRX</h3>
                   <p className="text-black/50 mb-6 leading-relaxed">
@@ -108,7 +123,7 @@ export default function Home() {
                   </Link>
                 </SpotlightCard>
               </FadeIn>
-              <FadeIn delay={0.4} className="h-full">
+              <FadeIn delay={0.2} className="h-full">
                 <SpotlightCard className="h-full p-8 group">
                   <h3 className="text-2xl font-semibold mb-4 group-hover:text-black/80 transition-colors">Earn Yield on Stocks</h3>
                   <p className="text-black/50 mb-6 leading-relaxed">
@@ -119,7 +134,7 @@ export default function Home() {
                   </Link>
                 </SpotlightCard>
               </FadeIn>
-              <FadeIn delay={0.6} className="h-full">
+              <FadeIn delay={0.3} className="h-full">
                 <SpotlightCard className="h-full p-8 group">
                   <h3 className="text-2xl font-semibold mb-4 group-hover:text-black/80 transition-colors">Track on Lisk</h3>
                   <p className="text-black/50 mb-6 leading-relaxed">

@@ -11,6 +11,7 @@ export function SpotlightCard({ children, className = "" }: SpotlightCardProps) 
     const divRef = useRef<HTMLDivElement>(null);
     const [position, setPosition] = useState({ x: 0, y: 0 });
     const [opacity, setOpacity] = useState(0);
+    const [isHovered, setIsHovered] = useState(false);
 
     const handleMouseMove = (e: MouseEvent<HTMLDivElement>) => {
         if (!divRef.current) return;
@@ -23,10 +24,12 @@ export function SpotlightCard({ children, className = "" }: SpotlightCardProps) 
 
     const handleMouseEnter = () => {
         setOpacity(1);
+        setIsHovered(true);
     };
 
     const handleMouseLeave = () => {
         setOpacity(0);
+        setIsHovered(false);
     };
 
     return (
@@ -35,18 +38,28 @@ export function SpotlightCard({ children, className = "" }: SpotlightCardProps) 
             onMouseMove={handleMouseMove}
             onMouseEnter={handleMouseEnter}
             onMouseLeave={handleMouseLeave}
-            className={`relative overflow-hidden rounded-3xl border border-black/10 bg-white/50 backdrop-blur-md transition-all duration-300 hover:-translate-y-1 ${className}`}
+            className={`relative overflow-hidden rounded-3xl border transition-all duration-500 ${isHovered
+                    ? 'border-black/20 shadow-xl shadow-black/10 -translate-y-2 scale-[1.02]'
+                    : 'border-black/10 shadow-lg'
+                } bg-white/50 backdrop-blur-md ${className}`}
         >
-            {/* Spotlight Effect */}
             <div
-                className="pointer-events-none absolute -inset-px opacity-0 transition duration-300"
+                className="pointer-events-none absolute -inset-px opacity-0 transition-opacity duration-500"
                 style={{
                     opacity,
                     background: `radial-gradient(600px circle at ${position.x}px ${position.y}px, rgba(0,0,0,0.08), transparent 40%)`,
                 }}
             />
 
-            {/* Content */}
+            {isHovered && (
+                <div
+                    className="pointer-events-none absolute inset-0 opacity-50 transition-opacity duration-500"
+                    style={{
+                        background: `radial-gradient(800px circle at ${position.x}px ${position.y}px, rgba(0,0,0,0.02), transparent 50%)`,
+                    }}
+                />
+            )}
+
             <div className="relative h-full">{children}</div>
         </div>
     );

@@ -52,17 +52,31 @@ export function PageLoader() {
                     transition={{ duration: 0.8, ease: [0.76, 0, 0.24, 1] }}
                     className="fixed inset-0 z-[9999] bg-white flex flex-col items-center justify-center overflow-hidden"
                 >
-                    {/* Radial Dot Pattern Background */}
-                    <div className="absolute inset-0 opacity-[0.3]">
-                        <div
-                            className="absolute inset-0"
-                            style={{
-                                backgroundImage: 'radial-gradient(circle, rgba(0, 0, 0, 0.6) 1px, transparent 1px)',
-                                backgroundSize: '32px 32px',
-                                backgroundPosition: 'center center',
-                            }}
-                        ></div>
-                    </div>
+                    <div className="absolute inset-0 bg-gradient-to-br from-gray-50 via-white to-slate-50"></div>
+
+                    <motion.div
+                        animate={{
+                            backgroundPosition: ['0% 0%', '100% 100%'],
+                        }}
+                        transition={{
+                            duration: 20,
+                            repeat: Infinity,
+                            repeatType: 'reverse',
+                            ease: 'linear',
+                        }}
+                        className="absolute inset-0 opacity-40"
+                        style={{
+                            backgroundImage: 'radial-gradient(circle at 20% 50%, rgba(0, 0, 0, 0.03) 0%, transparent 50%), radial-gradient(circle at 80% 80%, rgba(0, 0, 0, 0.04) 0%, transparent 50%)',
+                            backgroundSize: '200% 200%',
+                        }}
+                    />
+
+                    <div
+                        className="absolute inset-0 opacity-[0.015] pointer-events-none mix-blend-overlay"
+                        style={{
+                            backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")`,
+                        }}
+                    />
 
                     {/* Main Content */}
                     <div className="relative z-10 flex flex-col items-center">
@@ -165,6 +179,49 @@ export function PageLoader() {
                             {Math.floor(Math.min(progress, 100))}%
                         </motion.p>
                     </div>
+
+                    {progress > 80 && (
+                        <motion.div
+                            initial={{ opacity: 0, y: 10 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 0.5 }}
+                            className="absolute bottom-12 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2"
+                        >
+                            <motion.div
+                                animate={{ y: [-3, 3, -3] }}
+                                transition={{
+                                    duration: 1.5,
+                                    repeat: Infinity,
+                                    ease: "easeInOut",
+                                }}
+                                className="text-black/30"
+                            >
+                                <svg
+                                    width="24"
+                                    height="24"
+                                    viewBox="0 0 24 24"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    strokeWidth="2"
+                                    strokeLinecap="round"
+                                    strokeLinejoin="round"
+                                >
+                                    <polyline points="18 15 12 9 6 15" />
+                                </svg>
+                            </motion.div>
+                            <motion.p
+                                animate={{ opacity: [0.3, 0.6, 0.3] }}
+                                transition={{
+                                    duration: 1.5,
+                                    repeat: Infinity,
+                                    ease: "easeInOut",
+                                }}
+                                className="text-xs text-black/30 font-medium tracking-wider uppercase"
+                            >
+                                Ready
+                            </motion.p>
+                        </motion.div>
+                    )}
                 </motion.div>
             )}
         </AnimatePresence>
