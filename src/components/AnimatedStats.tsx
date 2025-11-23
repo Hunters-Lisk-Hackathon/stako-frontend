@@ -71,7 +71,7 @@ export function AnimatedStats() {
             <div className="max-w-7xl mx-auto px-6 grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
                 {stats.map((stat, index) => (
                     <div key={index} className="flex flex-col items-center">
-                        <div className="text-3xl md:text-4xl font-bold tracking-tight mb-2">
+                        <div className="text-3xl md:text-4xl font-bold tracking-tight mb-2 font-mono">
                             {isInView ? (
                                 stat.ticker ? (
                                     // Live ticker

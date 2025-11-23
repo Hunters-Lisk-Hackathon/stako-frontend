@@ -68,25 +68,25 @@ export default function Home() {
                 <FadeIn delay={0.2} direction="up">
                   <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold tracking-tighter mb-6 lg:mb-8">
                     <span className="text-gradient">Tokenized Stocks</span> <br />
-                    <span className="text-black/40">on Lisk.</span>
+                    <span className="text-black/40 tracking-tighter">on Lisk.</span>
                   </h1>
                 </FadeIn>
                 <FadeIn delay={0.4} direction="up">
                   <p className="text-lg md:text-xl lg:text-2xl text-black/60 max-w-2xl mb-8 lg:mb-12 leading-relaxed">
-                    Buy global stocks with <strong>IDRX</strong>. Low fees, instant settlement, and secured on the Lisk blockchain.
+                    Buy global stocks with <strong className="text-black">IDRX</strong>. Low fees, instant settlement, and secured on the <strong className="text-black">Lisk L2</strong> blockchain.
                   </p>
                 </FadeIn>
                 <FadeIn delay={0.6} direction="up">
                   <div className="flex flex-col sm:flex-row gap-4">
                     <Link
                       href="https://dclex-dex.netlify.app/"
-                      className="px-8 py-4 bg-black text-white text-lg font-medium rounded-full hover:bg-gray-800 transition-all hover:scale-105 active:scale-95 inline-flex items-center justify-center shadow-lg hover:shadow-xl hover:shadow-black/20"
+                      className="px-8 py-4 bg-black text-white text-lg font-medium rounded-full hover:bg-gray-800 transition-all hover:scale-105 active:scale-95 inline-flex items-center justify-center shadow-lg hover:shadow-xl hover:shadow-black/20 tracking-wide"
                     >
                       Start Trading
                     </Link>
                     <Link
                       href="#"
-                      className="px-8 py-4 border border-black/20 text-black text-lg font-medium rounded-full hover:bg-black/5 transition-all hover:scale-105 active:scale-95 inline-flex items-center justify-center backdrop-blur-sm"
+                      className="px-8 py-4 border border-black/20 text-black text-lg font-medium rounded-full hover:bg-black/5 transition-all hover:scale-105 active:scale-95 inline-flex items-center justify-center backdrop-blur-sm tracking-wide"
                     >
                       Learn More
                     </Link>
