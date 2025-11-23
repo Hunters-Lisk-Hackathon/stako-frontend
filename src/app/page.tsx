@@ -1,4 +1,3 @@
-import Image from "next/image";
 import Link from "next/link";
 import { FadeIn } from "@/components/FadeIn";
 import { StockTicker } from "@/components/StockTicker";
@@ -13,21 +12,17 @@ export default function Home() {
     <>
       <PageLoader />
       <div className="min-h-screen bg-white text-black selection:bg-black selection:text-white overflow-hidden relative bg-dot-grid">
-        {/* Noise Texture Overlay - Moved to z-0 to sit behind content */}
         <div className="fixed inset-0 w-full h-full bg-noise z-0 pointer-events-none mix-blend-multiply opacity-50"></div>
 
-        {/* Animated Background - Sits at -z-10 */}
         <div className="absolute top-0 left-0 w-full h-full overflow-hidden -z-10">
           <div className="absolute top-0 left-1/4 w-96 h-96 bg-gray-200 rounded-full mix-blend-multiply filter blur-3xl opacity-40 animate-blob"></div>
           <div className="absolute top-0 right-1/4 w-96 h-96 bg-slate-200 rounded-full mix-blend-multiply filter blur-3xl opacity-40 animate-blob animation-delay-2000"></div>
           <div className="absolute -bottom-32 left-1/3 w-96 h-96 bg-zinc-200 rounded-full mix-blend-multiply filter blur-3xl opacity-40 animate-blob animation-delay-4000"></div>
 
-          {/* Floating Elements - Monochrome */}
           <div className="absolute top-1/3 left-10 w-16 h-16 border-4 border-black/5 rounded-full animate-bounce duration-[3000ms]"></div>
           <div className="absolute bottom-1/4 right-10 w-24 h-24 border-4 border-black/5 rounded-lg rotate-12 animate-pulse duration-[4000ms]"></div>
         </div>
 
-        {/* Navigation - z-50 to stay on top */}
         <nav className="fixed top-0 w-full z-50 border-b border-black/5 bg-white/70 backdrop-blur-md transition-all duration-300">
           <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
             <div className="text-xl font-bold tracking-tighter">KR4</div>
@@ -47,9 +42,7 @@ export default function Home() {
         </nav>
 
         <main className="relative z-10">
-          {/* Hero Section - Full Screen */}
           <section className="relative min-h-screen flex items-center justify-center px-6 border-b border-black/5">
-            {/* Hero Grid Overlay - Fades out at bottom */}
             <div
               className="absolute inset-0 opacity-[0.07] pointer-events-none"
               style={{
@@ -94,17 +87,14 @@ export default function Home() {
                 </FadeIn>
               </div>
 
-              {/* Hero 3D Asset */}
               <FadeIn delay={0.8} direction="up" scale={0.85}>
                 <Hero3D />
               </FadeIn>
             </div>
           </section>
 
-          {/* Animated Stats */}
           <AnimatedStats />
 
-          {/* Features Grid */}
           <section className="py-24 px-6 border-b border-black/5 relative">
             <div className="max-w-7xl mx-auto grid md:grid-cols-3 gap-12 relative z-10">
               <FadeIn delay={0.2} className="h-full">
@@ -143,7 +133,6 @@ export default function Home() {
             </div>
           </section>
 
-          {/* How It Works Section */}
           <section className="py-32 px-6 border-b border-black/5 relative overflow-hidden">
             <div className="max-w-7xl mx-auto relative z-10">
               <div className="mb-20">
@@ -175,7 +164,6 @@ export default function Home() {
             </div>
           </section>
 
-          {/* Compliance Section */}
           <section className="py-24 px-6">
             <div className="max-w-7xl mx-auto">
               <FadeIn delay={0.2}>
@@ -217,7 +205,6 @@ export default function Home() {
           </section>
         </main>
 
-        {/* Footer */}
         <footer className="py-12 px-6 border-t border-black/10 bg-white/50 backdrop-blur-sm relative z-10">
           <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6">
             <div className="text-sm text-black/40">
