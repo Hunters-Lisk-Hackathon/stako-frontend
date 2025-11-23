@@ -1,4 +1,3 @@
-
 import Image from "next/image";
 import Link from "next/link";
 import { FadeIn } from "@/components/FadeIn";
@@ -7,6 +6,7 @@ import { Hero3D } from "@/components/Hero3D";
 import { AnimatedStats } from "@/components/AnimatedStats";
 import { PageLoader } from "@/components/PageLoader";
 import { ScrollStepper } from "@/components/ScrollStepper";
+import { InteractiveGrid } from "@/components/InteractiveGrid";
 
 export default function Home() {
   return (
@@ -49,19 +49,8 @@ export default function Home() {
         <main className="relative z-10">
           {/* Hero Section - Full Screen */}
           <section className="relative min-h-screen flex items-center justify-center px-6 border-b border-black/5">
-            {/* Hero Grid Overlay - Fades out at bottom */}
-            <div
-              className="absolute inset-0 opacity-[0.07] pointer-events-none"
-              style={{
-                backgroundImage: `
-                  linear-gradient(to right, rgba(0, 0, 0, 0.8) 1px, transparent 1px),
-                  linear-gradient(to bottom, rgba(0, 0, 0, 0.8) 1px, transparent 1px)
-                `,
-                backgroundSize: '60px 60px',
-                maskImage: 'linear-gradient(to bottom, black 40%, transparent 100%)',
-                WebkitMaskImage: 'linear-gradient(to bottom, black 40%, transparent 100%)'
-              }}
-            />
+            {/* Interactive Hero Grid */}
+            <InteractiveGrid />
 
             <div className="max-w-7xl mx-auto w-full grid lg:grid-cols-2 gap-8 lg:gap-16 items-center py-20 relative z-10">
               <div className="flex flex-col justify-center">
