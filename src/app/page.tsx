@@ -6,7 +6,7 @@ import { Hero3D } from "@/components/Hero3D";
 import { AnimatedStats } from "@/components/AnimatedStats";
 import { PageLoader } from "@/components/PageLoader";
 import { ScrollStepper } from "@/components/ScrollStepper";
-import { InteractiveGrid } from "@/components/InteractiveGrid";
+import { SpotlightCard } from "@/components/SpotlightCard";
 
 export default function Home() {
   return (
@@ -49,8 +49,19 @@ export default function Home() {
         <main className="relative z-10">
           {/* Hero Section - Full Screen */}
           <section className="relative min-h-screen flex items-center justify-center px-6 border-b border-black/5">
-            {/* Interactive Hero Grid */}
-            <InteractiveGrid />
+            {/* Hero Grid Overlay - Fades out at bottom */}
+            <div
+              className="absolute inset-0 opacity-[0.07] pointer-events-none"
+              style={{
+                backgroundImage: `
+                  linear-gradient(to right, rgba(0, 0, 0, 0.8) 1px, transparent 1px),
+                  linear-gradient(to bottom, rgba(0, 0, 0, 0.8) 1px, transparent 1px)
+                `,
+                backgroundSize: '60px 60px',
+                maskImage: 'linear-gradient(to bottom, black 40%, transparent 100%)',
+                WebkitMaskImage: 'linear-gradient(to bottom, black 40%, transparent 100%)'
+              }}
+            />
 
             <div className="max-w-7xl mx-auto w-full grid lg:grid-cols-2 gap-8 lg:gap-16 items-center py-20 relative z-10">
               <div className="flex flex-col justify-center">
@@ -97,7 +108,7 @@ export default function Home() {
           <section className="py-24 px-6 border-b border-black/5 relative">
             <div className="max-w-7xl mx-auto grid md:grid-cols-3 gap-12 relative z-10">
               <FadeIn delay={0.2} className="h-full">
-                <div className="group h-full p-8 rounded-3xl glass-card hover:-translate-y-1 transition-all duration-300">
+                <SpotlightCard className="h-full p-8 group">
                   <h3 className="text-2xl font-semibold mb-4 group-hover:text-black/80 transition-colors">Buy with IDRX</h3>
                   <p className="text-black/50 mb-6 leading-relaxed">
                     Seamlessly swap between IDRX stablecoin and tokenized stocks. No traditional broker account needed.
@@ -105,10 +116,10 @@ export default function Home() {
                   <Link href="#" className="text-sm font-medium border-b border-black/20 pb-1 hover:border-black transition-colors inline-flex items-center gap-1 group-hover:gap-2">
                     Start Trading <span>→</span>
                   </Link>
-                </div>
+                </SpotlightCard>
               </FadeIn>
               <FadeIn delay={0.4} className="h-full">
-                <div className="group h-full p-8 rounded-3xl glass-card hover:-translate-y-1 transition-all duration-300">
+                <SpotlightCard className="h-full p-8 group">
                   <h3 className="text-2xl font-semibold mb-4 group-hover:text-black/80 transition-colors">Earn Yield on Stocks</h3>
                   <p className="text-black/50 mb-6 leading-relaxed">
                     Add your stocks to liquidity pools on Lisk and earn a share of fees on every swap.
@@ -116,10 +127,10 @@ export default function Home() {
                   <Link href="#" className="text-sm font-medium border-b border-black/20 pb-1 hover:border-black transition-colors inline-flex items-center gap-1 group-hover:gap-2">
                     Explore Pools <span>→</span>
                   </Link>
-                </div>
+                </SpotlightCard>
               </FadeIn>
               <FadeIn delay={0.6} className="h-full">
-                <div className="group h-full p-8 rounded-3xl glass-card hover:-translate-y-1 transition-all duration-300">
+                <SpotlightCard className="h-full p-8 group">
                   <h3 className="text-2xl font-semibold mb-4 group-hover:text-black/80 transition-colors">Track on Lisk</h3>
                   <p className="text-black/50 mb-6 leading-relaxed">
                     Manage your stock portfolio on-chain with full self-custody. Verify every transaction on the Lisk explorer.
@@ -127,7 +138,7 @@ export default function Home() {
                   <Link href="#" className="text-sm font-medium border-b border-black/20 pb-1 hover:border-black transition-colors inline-flex items-center gap-1 group-hover:gap-2">
                     View Portfolio <span>→</span>
                   </Link>
-                </div>
+                </SpotlightCard>
               </FadeIn>
             </div>
           </section>
