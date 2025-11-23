@@ -223,7 +223,7 @@ export default function Home() {
         <footer className="py-12 px-6 border-t border-black/10 bg-white/50 backdrop-blur-sm relative z-10">
           <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6">
             <div className="text-sm text-black/40">
-              © 2024 KR4. All rights reserved.
+              © 2025 KR4. All rights reserved.
             </div>
             <div className="flex gap-6 text-sm text-black/40">
               <Link href="#" className="hover:text-black transition-colors">Privacy</Link>
