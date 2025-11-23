@@ -12,17 +12,17 @@ export default function Home() {
   return (
     <>
       <PageLoader />
-      <div className="min-h-screen bg-white text-black selection:bg-black selection:text-white overflow-hidden relative">
+      <div className="min-h-screen bg-white text-black selection:bg-black selection:text-white overflow-hidden relative bg-dot-grid">
         {/* Noise Texture Overlay - Moved to z-0 to sit behind content */}
         <div className="fixed inset-0 w-full h-full bg-noise z-0 pointer-events-none mix-blend-multiply opacity-50"></div>
 
         {/* Animated Background - Sits at -z-10 */}
         <div className="absolute top-0 left-0 w-full h-full overflow-hidden -z-10">
-          <div className="absolute top-0 left-1/4 w-96 h-96 bg-purple-300 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob"></div>
-          <div className="absolute top-0 right-1/4 w-96 h-96 bg-yellow-300 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob animation-delay-2000"></div>
-          <div className="absolute -bottom-32 left-1/3 w-96 h-96 bg-pink-300 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob animation-delay-4000"></div>
+          <div className="absolute top-0 left-1/4 w-96 h-96 bg-gray-200 rounded-full mix-blend-multiply filter blur-3xl opacity-40 animate-blob"></div>
+          <div className="absolute top-0 right-1/4 w-96 h-96 bg-slate-200 rounded-full mix-blend-multiply filter blur-3xl opacity-40 animate-blob animation-delay-2000"></div>
+          <div className="absolute -bottom-32 left-1/3 w-96 h-96 bg-zinc-200 rounded-full mix-blend-multiply filter blur-3xl opacity-40 animate-blob animation-delay-4000"></div>
 
-          {/* Floating Elements */}
+          {/* Floating Elements - Monochrome */}
           <div className="absolute top-1/3 left-10 w-16 h-16 border-4 border-black/5 rounded-full animate-bounce duration-[3000ms]"></div>
           <div className="absolute bottom-1/4 right-10 w-24 h-24 border-4 border-black/5 rounded-lg rotate-12 animate-pulse duration-[4000ms]"></div>
         </div>
@@ -49,7 +49,21 @@ export default function Home() {
         <main className="relative z-10">
           {/* Hero Section - Full Screen */}
           <section className="relative min-h-screen flex items-center justify-center px-6 border-b border-black/5">
-            <div className="max-w-7xl mx-auto w-full grid lg:grid-cols-2 gap-8 lg:gap-16 items-center py-20">
+            {/* Hero Grid Overlay - Fades out at bottom */}
+            <div
+              className="absolute inset-0 opacity-[0.07] pointer-events-none"
+              style={{
+                backgroundImage: `
+                  linear-gradient(to right, rgba(0, 0, 0, 0.8) 1px, transparent 1px),
+                  linear-gradient(to bottom, rgba(0, 0, 0, 0.8) 1px, transparent 1px)
+                `,
+                backgroundSize: '60px 60px',
+                maskImage: 'linear-gradient(to bottom, black 40%, transparent 100%)',
+                WebkitMaskImage: 'linear-gradient(to bottom, black 40%, transparent 100%)'
+              }}
+            />
+
+            <div className="max-w-7xl mx-auto w-full grid lg:grid-cols-2 gap-8 lg:gap-16 items-center py-20 relative z-10">
               <div className="flex flex-col justify-center">
                 <FadeIn delay={0.2} direction="up">
                   <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold tracking-tighter mb-6 lg:mb-8">
@@ -91,7 +105,7 @@ export default function Home() {
           <AnimatedStats />
 
           {/* Features Grid */}
-          <section className="py-24 px-6 border-b border-black/5 bg-dot-grid relative">
+          <section className="py-24 px-6 border-b border-black/5 relative">
             <div className="max-w-7xl mx-auto grid md:grid-cols-3 gap-12 relative z-10">
               <FadeIn delay={0.2} className="h-full">
                 <div className="group h-full p-8 rounded-3xl glass-card hover:-translate-y-1 transition-all duration-300">
@@ -131,18 +145,6 @@ export default function Home() {
 
           {/* How It Works Section */}
           <section className="py-32 px-6 border-b border-black/5 relative overflow-hidden">
-            {/* Grid Lines Background (Blueprint Style) */}
-            <div
-              className="absolute inset-0 opacity-10 pointer-events-none"
-              style={{
-                backgroundImage: `
-                  linear-gradient(to right, rgba(0, 0, 0, 0.5) 1px, transparent 1px),
-                  linear-gradient(to bottom, rgba(0, 0, 0, 0.5) 1px, transparent 1px)
-                `,
-                backgroundSize: '40px 40px',
-              }}
-            />
-
             <div className="max-w-7xl mx-auto relative z-10">
               <div className="mb-20">
                 <h2 className="text-4xl md:text-6xl font-bold tracking-tighter mb-6">How It Works</h2>
