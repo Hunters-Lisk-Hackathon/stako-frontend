@@ -6,7 +6,10 @@ import { StockTicker } from "@/components/StockTicker";
 export default function Home() {
   return (
     <div className="min-h-screen bg-white text-black selection:bg-black selection:text-white overflow-hidden relative">
-      {/* Animated Background */}
+      {/* Noise Texture Overlay - Moved to z-0 to sit behind content */}
+      <div className="fixed inset-0 w-full h-full bg-noise z-0 pointer-events-none mix-blend-multiply opacity-50"></div>
+
+      {/* Animated Background - Sits at -z-10 */}
       <div className="absolute top-0 left-0 w-full h-full overflow-hidden -z-10">
         <div className="absolute top-0 left-1/4 w-96 h-96 bg-purple-300 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob"></div>
         <div className="absolute top-0 right-1/4 w-96 h-96 bg-yellow-300 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob animation-delay-2000"></div>
@@ -17,7 +20,7 @@ export default function Home() {
         <div className="absolute bottom-1/4 right-10 w-24 h-24 border-4 border-black/5 rounded-lg rotate-12 animate-pulse duration-[4000ms]"></div>
       </div>
 
-      {/* Navigation */}
+      {/* Navigation - z-50 to stay on top */}
       <nav className="fixed top-0 w-full z-50 border-b border-black/5 bg-white/70 backdrop-blur-md transition-all duration-300">
         <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
           <div className="text-xl font-bold tracking-tighter">KL4</div>
@@ -36,7 +39,7 @@ export default function Home() {
         <StockTicker />
       </nav>
 
-      <main>
+      <main className="relative z-10">
         {/* Hero Section */}
         <section className="relative pt-40 pb-20 md:pt-56 md:pb-32 px-6 border-b border-black/5">
           <div className="max-w-7xl mx-auto">
@@ -71,8 +74,8 @@ export default function Home() {
         </section>
 
         {/* Features Grid */}
-        <section className="py-24 px-6 border-b border-black/5">
-          <div className="max-w-7xl mx-auto grid md:grid-cols-3 gap-12">
+        <section className="py-24 px-6 border-b border-black/5 bg-dot-grid relative">
+          <div className="max-w-7xl mx-auto grid md:grid-cols-3 gap-12 relative z-10">
             <FadeIn delay={0.2} className="h-full">
               <div className="group h-full p-8 rounded-3xl glass-card hover:-translate-y-1 transition-all duration-300">
                 <h3 className="text-2xl font-semibold mb-4 group-hover:text-black/80 transition-colors">Buy with IDRX</h3>
@@ -152,7 +155,7 @@ export default function Home() {
       </main>
 
       {/* Footer */}
-      <footer className="py-12 px-6 border-t border-black/10 bg-white/50 backdrop-blur-sm">
+      <footer className="py-12 px-6 border-t border-black/10 bg-white/50 backdrop-blur-sm relative z-10">
         <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6">
           <div className="text-sm text-black/40">
             © 2024 KL4. All rights reserved.
