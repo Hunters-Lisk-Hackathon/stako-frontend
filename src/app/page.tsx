@@ -55,7 +55,7 @@ export default function Home() {
         </nav>
 
         <main className="relative z-10">
-          <section className="relative min-h-screen flex items-center justify-center px-6 border-b border-black/5">
+          <section className="relative min-h-screen flex items-center justify-center px-6 border-b border-black/5 pt-24 md:pt-28">
             <div
               className="absolute inset-0 opacity-[0.07] pointer-events-none"
               style={{
