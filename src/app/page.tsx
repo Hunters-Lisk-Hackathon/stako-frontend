@@ -7,6 +7,7 @@ import { PageLoader } from "@/components/PageLoader";
 import { SpotlightCard } from "@/components/SpotlightCard";
 import { CursorFollower } from "@/components/CursorFollower";
 import { ScrollProgress } from "@/components/ScrollProgress";
+import { MobileMenu } from "@/components/MobileMenu";
 
 const AnimatedStats = dynamic(() => import("@/components/AnimatedStats").then(mod => ({ default: mod.AnimatedStats })), {
   loading: () => <div className="w-full h-32" />,
@@ -44,12 +45,15 @@ export default function Home() {
               <Link href="#" className="hover:text-black transition-colors">Governance</Link>
               <Link href="#" className="hover:text-black transition-colors">Developers</Link>
             </div>
-            <Link
-              href="https://dclex-dex.netlify.app/"
-              className="btn-glow px-4 py-2 bg-black text-white text-sm font-medium rounded-full hover:bg-gray-800 transition-all hover:scale-105 active:scale-95 shadow-lg hover:shadow-xl"
-            >
-              Launch App
-            </Link>
+            <div className="flex items-center gap-4">
+              <Link
+                href="https://dclex-dex.netlify.app/"
+                className="btn-glow px-4 py-2 bg-black text-white text-sm font-medium rounded-full hover:bg-gray-800 transition-all hover:scale-105 active:scale-95 shadow-lg hover:shadow-xl"
+              >
+                Launch App
+              </Link>
+              <MobileMenu />
+            </div>
           </div>
           <StockTicker />
         </nav>
