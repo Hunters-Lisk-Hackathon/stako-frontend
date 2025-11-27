@@ -41,7 +41,7 @@ export default function Home() {
 
         <nav className="fixed top-0 w-full z-50 border-b border-black/5 bg-white/70 backdrop-blur-md transition-all duration-300">
           <div className="max-w-7xl mx-auto px-4 md:px-6 h-16 flex items-center justify-between">
-            <div className="text-xl font-bold tracking-tighter">KR4</div>
+            <div className="text-xl font-bold tracking-tighter">Stako</div>
             <div className="hidden md:flex gap-8 text-sm font-medium text-black/60">
               <Link href="#markets" className="hover:text-black transition-colors">Markets</Link>
               <Link href="#governance" className="hover:text-black transition-colors">Governance</Link>
@@ -166,7 +166,7 @@ export default function Home() {
                 steps={[
                   {
                     title: "Connect Your Wallet",
-                    description: "Link your Web3 wallet to the KR4 platform. We support MetaMask, WalletConnect, and other popular Lisk-compatible wallets.",
+                    description: "Link your Web3 wallet to the Stako platform. We support MetaMask, WalletConnect, and other popular Lisk-compatible wallets.",
                   },
                   {
                     title: "Deposit IDRX Stablecoin",
@@ -229,7 +229,7 @@ export default function Home() {
         <footer className="py-8 md:py-12 px-4 md:px-6 border-t border-black/10 bg-white/50 backdrop-blur-sm relative z-10">
           <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4 md:gap-6">
             <div className="text-xs md:text-sm text-black/40">
-              © 2025 KR4. All rights reserved.
+              © 2025 Stako. All rights reserved.
             </div>
             <div className="flex gap-4 md:gap-6 text-xs md:text-sm text-black/40">
               <Link href="#" className="hover:text-black transition-colors">Privacy</Link>

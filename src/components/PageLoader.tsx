@@ -124,7 +124,7 @@ export function PageLoader() {
                                     className="relative"
                                 >
                                     <h1 className="text-5xl font-bold tracking-tighter text-gradient relative">
-                                        KR4
+                                        Stako
                                         {/* Shimmer Effect */}
                                         <motion.div
                                             className="absolute inset-0 bg-gradient-to-r from-transparent via-white to-transparent opacity-30"

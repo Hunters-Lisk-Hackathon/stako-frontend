@@ -24,7 +24,7 @@ const spaceMono = Space_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "KR4 - Tokenized Stocks on Lisk",
+  title: "Stako - Tokenized Stocks on Lisk",
   description: "Buy global stocks with IDRX stablecoin on the Lisk blockchain.",
 };
 
