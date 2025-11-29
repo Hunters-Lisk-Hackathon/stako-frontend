@@ -94,6 +94,15 @@ body {
     opacity: 1;
     animation: glow-pulse 2s ease-in-out infinite;
   }
+
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
 }
 
 @keyframes glow-pulse {
@@ -126,4 +135,18 @@ body {
   100% {
     transform: translate(0px, 0px) scale(1);
   }
+}
+
+@keyframes slide-up {
+  from {
+    transform: translateY(100%);
+  }
+
+  to {
+    transform: translateY(0);
+  }
+}
+
+.animate-slide-up {
+  animation: slide-up 0.3s ease-out forwards;
 }

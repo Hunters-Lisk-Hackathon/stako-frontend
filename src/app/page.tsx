@@ -7,6 +7,7 @@ import { PageLoader } from "@/components/PageLoader";
 import { SpotlightCard } from "@/components/SpotlightCard";
 import { CursorFollower } from "@/components/CursorFollower";
 import { ScrollProgress } from "@/components/ScrollProgress";
+import { Navbar } from "@/components/Navbar";
 
 const AnimatedStats = dynamic(() => import("@/components/AnimatedStats").then(mod => ({ default: mod.AnimatedStats })), {
   loading: () => <div className="w-full h-32" />,
@@ -36,23 +37,7 @@ export default function Home() {
           <div className="absolute bottom-1/4 right-10 w-24 h-24 border-4 border-black/5 rounded-lg rotate-12 animate-pulse duration-[4000ms]"></div>
         </div>
 
-        <nav className="fixed top-0 w-full z-50 border-b border-black/5 bg-white/70 backdrop-blur-md transition-all duration-300">
-          <div className="max-w-7xl mx-auto px-4 md:px-6 h-16 flex items-center justify-between">
-            <div className="text-xl font-bold tracking-tighter">KR4</div>
-            <div className="hidden md:flex gap-8 text-sm font-medium text-black/60">
-              <Link href="#" className="hover:text-black transition-colors">Markets</Link>
-              <Link href="#" className="hover:text-black transition-colors">Governance</Link>
-              <Link href="#" className="hover:text-black transition-colors">Developers</Link>
-            </div>
-            <Link
-              href="https://dclex-dex.netlify.app/"
-              className="btn-glow px-4 py-2 bg-black text-white text-sm font-medium rounded-full hover:bg-gray-800 transition-all hover:scale-105 active:scale-95 shadow-lg hover:shadow-xl"
-            >
-              Launch App
-            </Link>
-          </div>
-          <StockTicker />
-        </nav>
+        <Navbar />
 
         <main className="relative z-10">
           <section className="relative min-h-screen flex items-center justify-center px-6 border-b border-black/5 pt-24 md:pt-28">
@@ -85,7 +70,7 @@ export default function Home() {
                 <FadeIn delay={0.6} direction="up">
                   <div className="flex flex-col sm:flex-row gap-4">
                     <Link
-                      href="https://dclex-dex.netlify.app/"
+                      href="/dashboard"
                       className="btn-glow px-6 md:px-8 py-3 md:py-4 bg-black text-white text-base md:text-lg font-medium rounded-full hover:bg-gray-800 transition-all hover:scale-105 active:scale-95 inline-flex items-center justify-center shadow-lg hover:shadow-2xl hover:shadow-black/30 tracking-wide"
                     >
                       Start Trading

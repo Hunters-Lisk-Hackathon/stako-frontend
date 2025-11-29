@@ -28,6 +28,8 @@ export const metadata: Metadata = {
   description: "Buy global stocks with IDRX stablecoin on the Lisk blockchain.",
 };
 
+import { Providers } from "./providers";
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -45,7 +47,7 @@ export default function RootLayout({
       <body
         className={`${outfit.variable} ${jakarta.variable} ${spaceMono.variable} font-sans antialiased`}
       >
-        {children}
+        <Providers>{children}</Providers>
       </body>
     </html>
   );
