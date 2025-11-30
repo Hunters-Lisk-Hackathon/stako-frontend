@@ -8,7 +8,7 @@ export function Sidebar() {
     return (
         <aside className="hidden md:flex flex-col w-64 h-screen fixed left-0 top-0 bg-white border-r border-gray-100 p-6 z-50">
             <div className="mb-10 px-2">
-                <div className="relative w-32 h-10">
+                <Link href="/" className="relative w-32 h-10 block hover:opacity-80 transition-opacity">
                     <Image
                         src="/images/stako-logo-transparent.png"
                         alt="Stako Logo"
@@ -16,7 +16,7 @@ export function Sidebar() {
                         className="object-contain object-left"
                         priority
                     />
-                </div>
+                </Link>
             </div>
 
             <nav className="flex-1 space-y-2">
