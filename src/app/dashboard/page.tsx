@@ -4,6 +4,7 @@ import { ActionButtons } from "@/components/dashboard/ActionButtons";
 import { StockList } from "@/components/dashboard/StockList";
 import { BottomNav } from "@/components/dashboard/BottomNav";
 import { Sidebar } from "@/components/dashboard/Sidebar";
+import { MarketNews } from "@/components/dashboard/MarketNews";
 import { FadeIn } from "@/components/FadeIn";
 
 export default function DashboardPage() {
@@ -46,9 +47,9 @@ export default function DashboardPage() {
                         {/* Right Column for Desktop */}
                         <div className="hidden lg:block lg:col-span-4">
                             <FadeIn delay={0.5} className="h-full">
-                                <div className="bg-white/80 backdrop-blur-md rounded-2xl p-6 border border-gray-100 h-full shadow-sm">
+                                <div className="bg-white/80 backdrop-blur-md rounded-2xl p-6 border border-gray-100 h-full shadow-sm overflow-y-auto max-h-[calc(100vh-12rem)]">
                                     <h3 className="font-bold text-lg mb-4">Market News</h3>
-                                    <p className="text-gray-500 text-sm">No recent news.</p>
+                                    <MarketNews />
                                 </div>
                             </FadeIn>
                         </div>
