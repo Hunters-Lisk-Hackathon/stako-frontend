@@ -1,51 +1,43 @@
 "use client";
 
-import { useTokenBalance } from './useTokenBalance';
-import { CONTRACT_ADDRESSES, STOCKS } from '@/lib/contracts';
+import { useMockPortfolio } from '@/context/MockPortfolioContext';
+import { STOCKS } from '@/lib/contracts';
 
 export function usePortfolio() {
-    const idrxBalance = useTokenBalance(CONTRACT_ADDRESSES.IDRX);
-    const aaplBalance = useTokenBalance(CONTRACT_ADDRESSES.AAPL);
-    const nvdaBalance = useTokenBalance(CONTRACT_ADDRESSES.NVDA);
-    const googlBalance = useTokenBalance(CONTRACT_ADDRESSES.GOOGL);
-
-    const isLoading =
-        idrxBalance.isLoading ||
-        aaplBalance.isLoading ||
-        nvdaBalance.isLoading ||
-        googlBalance.isLoading;
+    const { idrxBalance, stockBalances, isLoading, buyStock } = useMockPortfolio();
 
     // Calculate portfolio value in IDRX
     const calculatePortfolioValue = () => {
-        try {
-            const aaplValue = parseFloat(aaplBalance.formattedBalance) * STOCKS.AAPL.rate;
-            const nvdaValue = parseFloat(nvdaBalance.formattedBalance) * STOCKS.NVDA.rate;
-            const googlValue = parseFloat(googlBalance.formattedBalance) * STOCKS.GOOGL.rate;
-            const idrxValue = parseFloat(idrxBalance.formattedBalance);
-
-            const total = aaplValue + nvdaValue + googlValue + idrxValue;
-            return total;
-        } catch {
-            return 0;
-        }
+        let total = idrxBalance;
+        Object.entries(stockBalances).forEach(([symbol, amount]) => {
+            const rate = STOCKS[symbol as keyof typeof STOCKS]?.rate || 0;
+            total += amount * rate;
+        });
+        return total;
     };
 
     const portfolioValue = calculatePortfolioValue();
 
+    const stocks = Object.keys(STOCKS).reduce((acc, symbol) => {
+        acc[symbol] = {
+            formattedBalance: (stockBalances[symbol] || 0).toString(),
+            isLoading,
+            refetch: () => { },
+        };
+        return acc;
+    }, {} as any);
+
     return {
-        idrx: idrxBalance,
-        stocks: {
-            AAPL: aaplBalance,
-            NVDA: nvdaBalance,
-            GOOGL: googlBalance,
+        idrx: {
+            formattedBalance: idrxBalance.toString(),
+            balance: BigInt(idrxBalance), // Mock BigInt
+            isLoading,
+            refetch: () => { },
         },
+        stocks,
         portfolioValue,
         isLoading,
-        refetchAll: () => {
-            idrxBalance.refetch();
-            aaplBalance.refetch();
-            nvdaBalance.refetch();
-            googlBalance.refetch();
-        },
+        buyStock, // Expose buy function
+        refetchAll: () => { },
     };
 }

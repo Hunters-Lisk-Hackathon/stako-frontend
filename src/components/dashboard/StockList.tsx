@@ -51,25 +51,68 @@ function StockListItem({ symbol, name, price, logo, color }: StockListItemProps)
     )
 }
 
+import { usePortfolio } from "@/hooks/usePortfolio";
+
+// ... existing imports
+
 export function StockList() {
+    const { stocks } = usePortfolio();
+
+    const stockList = Object.entries(STOCKS).map(([symbol, data]) => ({
+        symbol,
+        name: data.name,
+        price: data.rate,
+        color: data.color,
+        balance: parseFloat(stocks[symbol]?.formattedBalance || "0"),
+    }));
+
+    const ownedStocks = stockList.filter(s => s.balance > 0);
+
     return (
-        <div className="py-6">
-            <div className="mb-8">
-                <h3 className="font-bold text-lg mb-4">Portfolio</h3>
-                {/* Mobile: Horizontal Scroll, Desktop: Grid */}
-                <div className="flex gap-4 overflow-x-auto pb-4 scrollbar-hide -mx-4 px-4 md:mx-0 md:px-0 md:grid md:grid-cols-3 md:gap-6 md:overflow-visible">
-                    <StockCard symbol="AAPL" name="Apple Inc" price={`${STOCKS.AAPL.rate} IDRX`} logo="" color="bg-black" />
-                    <StockCard symbol="NVDA" name="Nvidia Corp" price={`${STOCKS.NVDA.rate} IDRX`} logo="" color="bg-green-500" />
-                    <StockCard symbol="GOOGL" name="Google" price={`${STOCKS.GOOGL.rate} IDRX`} logo="" color="bg-blue-500" />
+        <div className="py-6 space-y-8">
+            {/* Your Assets Section */}
+            <div>
+                <div className="flex items-center justify-between mb-4 px-1">
+                    <h3 className="font-bold text-lg">Your Assets</h3>
+                    {ownedStocks.length > 0 && <span className="text-xs text-gray-500 bg-gray-100 px-2 py-1 rounded-full">{ownedStocks.length} Stocks</span>}
                 </div>
+
+                {ownedStocks.length > 0 ? (
+                    <div className="flex gap-4 overflow-x-auto pb-4 scrollbar-hide -mx-4 px-4 md:mx-0 md:px-0 md:grid md:grid-cols-3 md:gap-6 md:overflow-visible">
+                        {ownedStocks.map(stock => (
+                            <StockCard
+                                key={stock.symbol}
+                                symbol={stock.symbol}
+                                name={stock.name}
+                                price={`${stock.price} IDRX`}
+                                logo=""
+                                color={stock.color}
+                                ownedAmount={stock.balance}
+                            />
+                        ))}
+                    </div>
+                ) : (
+                    <div className="bg-gray-50 rounded-2xl p-8 text-center border border-dashed border-gray-200">
+                        <p className="text-gray-500 mb-2">You don't own any stocks yet.</p>
+                        <p className="text-xs text-gray-400">Start trading to build your portfolio.</p>
+                    </div>
+                )}
             </div>
 
+            {/* Market Section */}
             <div>
-                <h3 className="font-bold text-lg mb-4">Favorite Stocks</h3>
+                <h3 className="font-bold text-lg mb-4 px-1">Explore Market</h3>
                 <div className="flex flex-col gap-3 md:grid md:grid-cols-2 md:gap-4">
-                    <StockListItem symbol="AAPL" name="Apple Inc" price={`${STOCKS.AAPL.rate} IDRX`} logo="" color="bg-black" />
-                    <StockListItem symbol="NVDA" name="Nvidia Corp" price={`${STOCKS.NVDA.rate} IDRX`} logo="" color="bg-green-500" />
-                    <StockListItem symbol="GOOGL" name="Google" price={`${STOCKS.GOOGL.rate} IDRX`} logo="" color="bg-blue-500" />
+                    {stockList.map(stock => (
+                        <StockListItem
+                            key={stock.symbol}
+                            symbol={stock.symbol}
+                            name={stock.name}
+                            price={`${stock.price} IDRX`}
+                            logo=""
+                            color={stock.color}
+                        />
+                    ))}
                 </div>
             </div>
         </div>

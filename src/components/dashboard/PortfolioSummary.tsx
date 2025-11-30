@@ -19,18 +19,23 @@ export function PortfolioSummary() {
     if (!isConnected) {
         return (
             <div className="py-6">
-                <h3 className="text-gray-500 font-medium mb-1">Portfolio</h3>
-                <div className="text-2xl font-bold tracking-tight mb-6 text-gray-400">
-                    Connect wallet to view
-                </div>
-                <div className="flex items-center gap-2 mb-2">
-                    <h4 className="text-gray-500 font-medium">IDRX Balance</h4>
-                </div>
-                <div className="flex items-center gap-3">
-                    <div className="w-8 h-8 bg-gray-300 rounded-full flex items-center justify-center text-white font-bold text-sm">
-                        X
+                <div className="bg-gradient-to-br from-gray-900 to-black rounded-3xl p-6 text-white shadow-xl relative overflow-hidden group">
+                    <div className="absolute top-0 right-0 w-64 h-64 bg-white/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2 group-hover:bg-white/10 transition-colors"></div>
+
+                    <h3 className="text-white/60 font-medium mb-1 relative z-10">Total Balance</h3>
+                    <div className="text-3xl font-bold tracking-tight mb-6 relative z-10">
+                        Rp 0
                     </div>
-                    <span className="text-xl font-medium text-gray-400">-- <span className="font-bold">IDRX</span></span>
+
+                    <div className="flex items-center gap-3 relative z-10 opacity-50">
+                        <div className="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center backdrop-blur-md">
+                            <X className="w-5 h-5" />
+                        </div>
+                        <div>
+                            <p className="text-xs text-white/60">IDRX Balance</p>
+                            <p className="font-medium">Connect Wallet</p>
+                        </div>
+                    </div>
                 </div>
             </div>
         );
@@ -38,32 +43,43 @@ export function PortfolioSummary() {
 
     return (
         <div className="py-6">
-            <h3 className="text-gray-500 font-medium mb-1">Portfolio</h3>
-            <div className="text-4xl font-bold tracking-tight mb-6">
-                {isLoading ? (
-                    <div className="flex items-center gap-2">
-                        <Loader2 className="w-8 h-8 animate-spin text-gray-400" />
-                        <span className="text-gray-400">Loading...</span>
-                    </div>
-                ) : (
-                    `Rp ${formatBalance(portfolioValue.toString())}`
-                )}
-            </div>
+            <div className="bg-gradient-to-br from-black to-gray-900 rounded-3xl p-6 text-white shadow-2xl relative overflow-hidden group">
+                {/* Decorative Elements */}
+                <div className="absolute top-0 right-0 w-64 h-64 bg-blue-500/20 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2 group-hover:bg-blue-500/30 transition-colors duration-500"></div>
+                <div className="absolute bottom-0 left-0 w-32 h-32 bg-purple-500/20 rounded-full blur-2xl translate-y-1/2 -translate-x-1/2 group-hover:bg-purple-500/30 transition-colors duration-500"></div>
 
-            <div className="flex items-center gap-2 mb-2">
-                <h4 className="text-gray-500 font-medium">IDRX Balance</h4>
-            </div>
-            <div className="flex items-center gap-3">
-                <div className="w-8 h-8 bg-blue-600 rounded-full flex items-center justify-center text-white font-bold text-sm">
-                    X
+                <div className="relative z-10">
+                    <h3 className="text-white/70 font-medium mb-2 flex items-center gap-2">
+                        Total Portfolio Value
+                        <span className="px-2 py-0.5 bg-white/10 rounded-full text-[10px] text-white/80 backdrop-blur-sm border border-white/5">
+                            +2.4%
+                        </span>
+                    </h3>
+                    <div className="text-4xl font-bold tracking-tight mb-8">
+                        {isLoading ? (
+                            <div className="h-10 w-48 bg-white/10 rounded animate-pulse"></div>
+                        ) : (
+                            `Rp ${formatBalance(portfolioValue.toString())}`
+                        )}
+                    </div>
+
+                    <div className="flex items-center gap-4 p-3 bg-white/5 rounded-2xl backdrop-blur-sm border border-white/5 hover:bg-white/10 transition-colors">
+                        <div className="w-10 h-10 bg-blue-600 rounded-full flex items-center justify-center text-white font-bold text-sm shadow-lg shadow-blue-900/50">
+                            X
+                        </div>
+                        <div>
+                            <p className="text-xs text-white/60 mb-0.5">Available to Trade</p>
+                            {isLoading ? (
+                                <div className="h-5 w-24 bg-white/10 rounded animate-pulse"></div>
+                            ) : (
+                                <div className="flex items-baseline gap-1">
+                                    <span className="text-lg font-bold">{formatBalance(idrx.formattedBalance)}</span>
+                                    <span className="text-xs font-medium text-blue-400">IDRX</span>
+                                </div>
+                            )}
+                        </div>
+                    </div>
                 </div>
-                {isLoading ? (
-                    <span className="text-xl font-medium text-gray-400">Loading...</span>
-                ) : (
-                    <span className="text-2xl font-medium">
-                        {formatBalance(idrx.formattedBalance)} <span className="font-bold">IDRX</span>
-                    </span>
-                )}
             </div>
         </div>
     );

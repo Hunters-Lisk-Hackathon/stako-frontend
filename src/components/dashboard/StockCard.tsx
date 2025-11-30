@@ -7,31 +7,50 @@ interface StockCardProps {
     symbol: string;
     name: string;
     price: string;
-    logo: string; // URL or path to logo
-    color?: string; // Optional background color/gradient for logo placeholder
+    logo: string;
+    color?: string;
+    ownedAmount?: number;
 }
 
-export function StockCard({ symbol, name, price, logo, color }: StockCardProps) {
+export function StockCard({ symbol, name, price, logo, color, ownedAmount = 0 }: StockCardProps) {
     return (
         <Link href={`/dashboard/buy/${symbol}`}>
-            <div className="min-w-[140px] p-4 rounded-2xl border border-gray-100 bg-white shadow-sm hover:shadow-md transition-shadow cursor-pointer">
-                <div className="flex items-start justify-between mb-3">
-                    <div className={`w-10 h-10 rounded-full flex items-center justify-center overflow-hidden ${color || 'bg-gray-100'}`}>
-                        {/* Placeholder for actual logo logic */}
-                        <div className="w-full h-full relative">
-                            {/* In a real app, use NextImage with proper src */}
-                            <div className="absolute inset-0 flex items-center justify-center text-white font-bold text-xs">
-                                {/* Fallback if no image */}
-                                {!logo && symbol[0]}
+            <div className="min-w-[160px] p-5 rounded-3xl border border-gray-100 bg-white shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 cursor-pointer group relative overflow-hidden">
+                {/* Gradient Background on Hover */}
+                <div className="absolute inset-0 bg-gradient-to-br from-gray-50 to-white opacity-0 group-hover:opacity-100 transition-opacity"></div>
+
+                <div className="relative z-10">
+                    <div className="flex items-start justify-between mb-4">
+                        <div className={`w-12 h-12 rounded-2xl flex items-center justify-center overflow-hidden ${color || 'bg-gray-100'} shadow-inner`}>
+                            {/* Placeholder for actual logo logic */}
+                            <div className="w-full h-full relative">
+                                <div className="absolute inset-0 flex items-center justify-center text-white font-bold text-sm">
+                                    {!logo && symbol[0]}
+                                </div>
+                                {logo && <Image src={logo} alt={symbol} fill className="object-cover" />}
                             </div>
-                            {logo && <Image src={logo} alt={symbol} fill className="object-cover" />}
+                        </div>
+                        {ownedAmount > 0 && (
+                            <span className="px-2 py-1 bg-green-100 text-green-700 text-[10px] font-bold rounded-full border border-green-200">
+                                OWNED
+                            </span>
+                        )}
+                    </div>
+
+                    <div>
+                        <h4 className="font-bold text-lg group-hover:text-blue-600 transition-colors">{symbol}</h4>
+                        <p className="text-xs text-gray-500 mb-3">{name}</p>
+
+                        <div className="flex items-end justify-between">
+                            <p className="font-bold text-sm">{price}</p>
+                            {ownedAmount > 0 && (
+                                <div className="text-right">
+                                    <p className="text-[10px] text-gray-400">Balance</p>
+                                    <p className="text-xs font-bold text-black">{ownedAmount.toFixed(4)}</p>
+                                </div>
+                            )}
                         </div>
                     </div>
-                </div>
-                <div>
-                    <h4 className="font-bold text-lg">{symbol}</h4>
-                    <p className="text-xs text-gray-500 mb-2">{name}</p>
-                    <p className="font-semibold text-sm">{price}</p>
                 </div>
             </div>
         </Link>

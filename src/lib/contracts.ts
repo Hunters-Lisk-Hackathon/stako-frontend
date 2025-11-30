@@ -16,27 +16,16 @@ export const EXCHANGE_RATES = {
 
 // Stock metadata
 export const STOCKS = {
-  AAPL: {
-    symbol: 'AAPL',
-    name: 'Apple Inc',
-    address: CONTRACT_ADDRESSES.AAPL,
-    rate: EXCHANGE_RATES.AAPL,
-    color: 'bg-black',
-  },
-  NVDA: {
-    symbol: 'NVDA',
-    name: 'Nvidia Corp',
-    address: CONTRACT_ADDRESSES.NVDA,
-    rate: EXCHANGE_RATES.NVDA,
-    color: 'bg-green-500',
-  },
-  GOOGL: {
-    symbol: 'GOOGL',
-    name: 'Google',
-    address: CONTRACT_ADDRESSES.GOOGL,
-    rate: EXCHANGE_RATES.GOOGL,
-    color: 'bg-blue-500',
-  },
+  AAPL: { address: "0x...", rate: 4628700, name: "Apple Inc", color: "bg-gray-900" },
+  NVDA: { address: "0x...", rate: 2930400, name: "NVIDIA Corp", color: "bg-green-600" },
+  GOOGL: { address: "0x...", rate: 5328000, name: "Alphabet Inc", color: "bg-blue-500" },
+  MSFT: { address: "0x...", rate: 8175150, name: "Microsoft Corp", color: "bg-blue-600" },
+  AMZN: { address: "0x...", rate: 3879450, name: "Amazon.com", color: "bg-orange-500" },
+  TSLA: { address: "0x...", rate: 7159500, name: "Tesla Inc", color: "bg-red-600" },
+  META: { address: "0x...", rate: 10772550, name: "Meta Platforms", color: "bg-blue-400" },
+  NFLX: { address: "0x...", rate: 14818500, name: "Netflix Inc", color: "bg-red-500" },
+  AMD: { address: "0x...", rate: 3563100, name: "Adv Micro Devices", color: "bg-black" },
+  COIN: { address: "0x...", rate: 4578750, name: "Coinbase Global", color: "bg-blue-700" },
 } as const;
 
 // ERC20 ABI (standard functions we need)

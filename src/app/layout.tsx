@@ -3,6 +3,7 @@ import { Outfit, Plus_Jakarta_Sans, Space_Mono } from "next/font/google";
 import "./globals.css";
 import { PannaProvider } from "@/components/providers/PannaProvider";
 import { Web3Provider } from "@/components/providers/Web3Provider";
+import { MockPortfolioProvider } from "@/context/MockPortfolioContext";
 
 const outfit = Outfit({
   subsets: ["latin"],
@@ -55,7 +56,11 @@ export default function RootLayout({
         className={`${outfit.variable} ${jakarta.variable} ${spaceMono.variable} font-sans antialiased`}
       >
         <Web3Provider>
-          <PannaProvider>{children}</PannaProvider>
+          <PannaProvider>
+            <MockPortfolioProvider>
+              {children}
+            </MockPortfolioProvider>
+          </PannaProvider>
         </Web3Provider>
       </body>
     </html>
