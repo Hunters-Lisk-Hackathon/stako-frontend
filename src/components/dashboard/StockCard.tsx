@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import { formatNumber } from "@/utils/format";
 
 interface StockCardProps {
     symbol: string;
@@ -46,7 +47,7 @@ export function StockCard({ symbol, name, price, logo, color, ownedAmount = 0 }:
                             {ownedAmount > 0 && (
                                 <div className="text-right">
                                     <p className="text-[10px] text-gray-400">Balance</p>
-                                    <p className="text-xs font-bold text-black">{ownedAmount.toFixed(4)}</p>
+                                    <p className="text-xs font-bold text-black">{formatNumber(ownedAmount)}</p>
                                 </div>
                             )}
                         </div>

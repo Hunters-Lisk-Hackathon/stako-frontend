@@ -4,6 +4,8 @@ import { StockCard } from "./StockCard";
 import { AreaChart, Area, ResponsiveContainer } from 'recharts';
 import Link from "next/link";
 import { STOCKS } from "@/lib/contracts";
+import { usePortfolio } from "@/hooks/usePortfolio";
+import { formatNumber } from "@/utils/format";
 
 // Mock data for sparklines
 const data = [
@@ -51,10 +53,6 @@ function StockListItem({ symbol, name, price, logo, color }: StockListItemProps)
     )
 }
 
-import { usePortfolio } from "@/hooks/usePortfolio";
-
-// ... existing imports
-
 export function StockList() {
     const { stocks } = usePortfolio();
 
@@ -84,7 +82,7 @@ export function StockList() {
                                 key={stock.symbol}
                                 symbol={stock.symbol}
                                 name={stock.name}
-                                price={`${stock.price} IDRX`}
+                                price={`${formatNumber(stock.price)} IDRX`}
                                 logo=""
                                 color={stock.color}
                                 ownedAmount={stock.balance}
@@ -108,7 +106,7 @@ export function StockList() {
                             key={stock.symbol}
                             symbol={stock.symbol}
                             name={stock.name}
-                            price={`${stock.price} IDRX`}
+                            price={`${formatNumber(stock.price)} IDRX`}
                             logo=""
                             color={stock.color}
                         />

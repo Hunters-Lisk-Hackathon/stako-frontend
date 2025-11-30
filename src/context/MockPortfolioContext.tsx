@@ -39,7 +39,7 @@ export function MockPortfolioProvider({ children }: { children: ReactNode }) {
         }
 
         const stockRate = STOCKS[symbol as keyof typeof STOCKS]?.rate || 0;
-        if (stockRate === 0) {
+        if (!stockRate) {
             setIsLoading(false);
             throw new Error("Invalid stock symbol");
         }
