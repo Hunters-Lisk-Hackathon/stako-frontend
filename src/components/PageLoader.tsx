@@ -136,10 +136,10 @@ export function PageLoader() {
 
           {progress > 80 && (
             <motion.div
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
+              initial={{ opacity: 0, y: 10, x: "-50%" }}
+              animate={{ opacity: 1, y: 0, x: "-50%" }}
               transition={{ duration: 0.5 }}
-              className="absolute bottom-12 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2"
+              className="absolute bottom-12 left-1/2 flex flex-col items-center gap-2"
             >
               <motion.div
                 animate={{ y: [-3, 3, -3] }}
